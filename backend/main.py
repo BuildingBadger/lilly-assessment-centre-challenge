@@ -37,6 +37,19 @@ def _load_medicines():
 
 @app.get("/medicines")
 def get_all_meds():
+
+    data = _load_medicines()
+
+    for i in data["medicines"]:
+        
+        if i["name"] == None or i["name"] == "":
+            i["name"] = "NAME NOT GIVEN"
+        
+        if i["price"] == None or i["price"] == "":
+            i["price"] = "PRICE NOT GIVEN"
+        else:
+            i["price"] = str(i["price"])
+
     return {"medicines": _load_medicines()}
 
 
